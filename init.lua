@@ -35,6 +35,9 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  -- Auto close quotes, brackets, etc
+  'jiangmiao/auto-pairs',
+
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
@@ -98,7 +101,7 @@ require('lazy').setup({
 
   {
     -- Theme inspired by Sublime Text
-    'patstockwell/vim-monokai-tasty/colors/vim-monokai-tasty.vim',
+    'patstockwell/vim-monokai-tasty',
     priority = 1000,
     config = function()
       vim.cmd.colorscheme 'vim-monokai-tasty'
