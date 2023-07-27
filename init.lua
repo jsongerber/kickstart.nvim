@@ -35,8 +35,21 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  -- Replace px by em/rem in css files
+  'Oldenborg/vim-px-to-rem',
+
+  'github/copilot.vim',
+
+  -- CSS/SCSS Syntax highlighting
+  'cakebaker/scss-syntax.vim',
+  'hail2u/vim-css3-syntax',
+
   -- Auto close quotes, brackets, etc
-  'jiangmiao/auto-pairs',
+  {
+    'jiangmiao/auto-pairs', 
+    event = "InsertEnter",
+    opt = {}
+  },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -75,6 +88,7 @@ require('lazy').setup({
 
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
+  
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -188,7 +202,7 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menuone,longest'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
@@ -255,7 +269,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'css', 'scss', 'sql', 'javascript', 'html', 'json', 'php' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
