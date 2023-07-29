@@ -47,6 +47,9 @@ require('lazy').setup({
   -- Auto close quotes, brackets, etc
   'jiangmiao/auto-pairs',
 
+  -- Primeagen's game to improve vim's built-in motions
+  'ThePrimeagen/vim-be-good',
+
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
