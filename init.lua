@@ -4,7 +4,11 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Install package manager
+vim.g.sonokai_style = 'shusia'
+vim.g.sonokai_dim_inactive_windows = 1
+vim.g.sonokai_better_performance = 1
+vim.g.sonokai_enable_italic = 1
+
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -107,14 +111,15 @@ require('lazy').setup({
   },
 
   {
-    'navarasu/onedark.nvim',
+    'sainnhe/sonokai',
     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
+    opts = {
+    },
     config = function()
-      require('onedark').setup {
-        style = 'warmer'
-      }
-      require('onedark').load()
+      vim.cmd [[
+        colorscheme sonokai
+      ]]
     end,
   },
 
@@ -125,7 +130,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'sonokai',
         component_separators = '|',
         section_separators = '',
       },
@@ -284,7 +289,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- Lualine theme
 require('lualine').setup {
   options = {
-    theme = 'onedark'
+    theme = 'sonokai'
     -- ... your lualine config
   }
 }
