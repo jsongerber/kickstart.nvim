@@ -504,6 +504,23 @@ cmp.setup {
   },
 }
 
+local snip = luasnip.snippet
+local text = luasnip.text_node
+local insert = luasnip.insert_node
+luasnip.add_snippets(nil, {
+  php = {
+    snip({
+      trig = 'log',
+      name = 'Log',
+      dscr = 'Log to the console',
+      priority = 1000,
+    }, {
+      text({ "error_log(print_r(" }),
+      insert(1, 'variable'),
+      text({ ', true));' })
+    }),
+  }
+})
 vim.g.copilot_assume_mapped = true
 
 -- The line beneath this is called `modeline`. See `:help modeline`
