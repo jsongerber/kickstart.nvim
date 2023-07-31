@@ -54,6 +54,8 @@ require('lazy').setup({
   -- Primeagen's game to improve vim's built-in motions
   'ThePrimeagen/vim-be-good',
 
+  'mattn/emmet-vim',
+
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
@@ -242,7 +244,6 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
-vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
