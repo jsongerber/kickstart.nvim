@@ -504,6 +504,19 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
+    -- ['<CR>'] = cmp.mapping(function(fallback)
+    --   -- Only confirm with select if it's not a text autocompletion
+    --   local entry = cmp.get_selected_entry()
+    --   local itemKind = entry:get_kind()
+    --   if itemKind ~= cmp.lsp.CompletionItemKind.Text then
+    --     cmp.confirm({
+    --       behavior = cmp.ConfirmBehavior.Replace,
+    --       select = true,
+    --     })
+    --   else
+    --     fallback()
+    -- end
+    -- end),
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
