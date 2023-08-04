@@ -11,6 +11,12 @@ vim.g.sonokai_enable_italic = 1
 
 vim.g.user_emmet_leader_key = '<C-c>'
 
+-- Show invisible chars
+vim.opt.list = true
+
+-- PHP CS Fixer
+vim.g.php_cs_fixer_rules = '@PSR12'
+
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -231,7 +237,7 @@ vim.o.termguicolors = true
 
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
-vim.o.expandtab = true
+vim.o.expandtab = false
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -375,7 +381,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach                                = function(_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -417,6 +423,13 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
 end
+
+-- Show signature help in a floating window in insert mode
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers['signature_help'], {
+  border = 'single',
+  close_events = { "CursorMoved", "BufHidden" },
+})
+vim.keymap.set('i', '<c-s>', vim.lsp.buf.signature_help)
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -491,6 +504,19 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
+    -- ['<CR>'] = cmp.mapping(function(fallback)
+    --   -- Only confirm with select if it's not a text autocompletion
+    --   local entry = cmp.get_selected_entry()
+    --   local itemKind = entry:get_kind()
+    --   if itemKind ~= cmp.lsp.CompletionItemKind.Text then
+    --     cmp.confirm({
+    --       behavior = cmp.ConfirmBehavior.Replace,
+    --       select = true,
+    --     })
+    --   else
+    --     fallback()
+    -- end
+    -- end),
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
