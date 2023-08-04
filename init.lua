@@ -304,7 +304,7 @@ require('lualine').setup {
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'css', 'scss',
+  ensure_installed = { 'c', 'cpp', 'lua', 'python', 'typescript', 'vimdoc', 'vim', 'css', 'scss',
     'sql', 'javascript', 'html', 'json', 'php' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -511,8 +511,8 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
-    { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'nvim_lsp' },
   },
 }
 
