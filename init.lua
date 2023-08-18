@@ -61,6 +61,9 @@ require('lazy').setup({
   -- Surround text with quotes, brackets, etc
   'tpope/vim-surround',
 
+  -- Show context
+  'wellle/context.vim',
+
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
