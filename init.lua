@@ -232,7 +232,7 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,longest'
+vim.o.completeopt = 'menuone,noinsert'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
@@ -257,6 +257,10 @@ vim.keymap.set('n', 'n', 'nzzzv')
 
 -- Remove highlight when <Esc> is pressed
 vim.keymap.set('n', '<Esc>', '<cmd>noh<CR><Esc>')
+
+-- Remap file in jason/remap.lua
+require('jason')
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
