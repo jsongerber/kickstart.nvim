@@ -43,6 +43,13 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  -- Telescope file browser
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  },
+
+  { 'nvim-tree/nvim-web-devicons' },
   -- Replace px by em/rem in css files
   'Oldenborg/vim-px-to-rem',
 
@@ -62,7 +69,7 @@ require('lazy').setup({
   'tpope/vim-surround',
 
   -- Show context
-  'wellle/context.vim',
+  'nvim-treesitter/nvim-treesitter-context',
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -100,7 +107,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',          opts = {} },
+  { 'folke/which-key.nvim',       opts = {} },
 
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
@@ -306,6 +313,16 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+
+-- open file_browser with the path of the current buffer
+require("telescope").load_extension "file_browser"
+-- open file_browser with the path of the current buffer in a horizontal split
+vim.api.nvim_set_keymap(
+  "n",
+  "<space>fb",
+  ":Telescope file_browser path=%:p:h select_buffer=true layout_strategy=horizontal<CR>",
+  { noremap = true }
+)
 
 -- Lualine theme
 require('lualine').setup {
