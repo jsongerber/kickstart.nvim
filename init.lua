@@ -71,6 +71,9 @@ require('lazy').setup({
   -- Show context
   'nvim-treesitter/nvim-treesitter-context',
 
+  -- Save session
+  'tpope/vim-obsession',
+
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
@@ -216,11 +219,6 @@ vim.wo.relativenumber = true
 -- Disable mouse mode
 vim.o.mouse = ''
 
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
-
 -- Enable break indent
 vim.o.breakindent = true
 
@@ -291,6 +289,16 @@ require('telescope').setup {
     },
     layout_strategy = 'vertical',
   },
+  extensions = {
+    file_browser = {
+      grouped = true,
+      sorting_strategy = 'ascending',
+      hidden = true,
+      layout_config = {
+        prompt_position = 'top',
+      }
+    }
+  }
 }
 
 -- Enable telescope fzf native, if installed
