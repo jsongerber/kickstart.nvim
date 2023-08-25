@@ -56,8 +56,8 @@ require('lazy').setup({
   'github/copilot.vim',
 
   -- CSS/SCSS Syntax highlighting
-  'cakebaker/scss-syntax.vim',
   'hail2u/vim-css3-syntax',
+  'cakebaker/scss-syntax.vim',
 
   -- Auto close quotes, brackets, etc
   'jiangmiao/auto-pairs',
@@ -67,6 +67,8 @@ require('lazy').setup({
 
   -- Surround text with quotes, brackets, etc
   'tpope/vim-surround',
+
+  'jose-elias-alvarez/null-ls.nvim',
 
   -- Show context
   'nvim-treesitter/nvim-treesitter-context',
@@ -484,6 +486,21 @@ local servers = {
   -- rust_analyzer = {},
   tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
+  cssls = {
+    filetypes = { 'css', 'scss', 'less', 'sass' },
+    settings = {
+      css = {
+        validate = true,
+      },
+      less = {
+        validate = true,
+      },
+      scss = {
+        validate = true,
+      },
+    },
+  },
+  jsonls = { filetypes = { 'json', 'jsonc' } },
 
   lua_ls = {
     Lua = {
@@ -599,6 +616,13 @@ luasnip.add_snippets(nil, {
   }
 })
 vim.g.copilot_assume_mapped = true
+
+local null_ls = require 'null-ls'
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.prettierd,
+  }
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
